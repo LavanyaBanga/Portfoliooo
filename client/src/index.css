@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f6f3ec;
+  color: #1c1a17;
+  @apply font-body antialiased;
+}
+
+/* Use this instead of text-white on large headings — deep ink, not pure black */
+.text-heading {
+  color: #1c1a17;
+}
+
+::selection {
+  background-color: rgba(181, 72, 31, 0.18);
+  color: #1c1a17;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f6f3ec;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddd6c8;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9c0ac;
+}
+
+/* Paper-style card instead of dark glassmorphism */
+.glass-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd6c8;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(28, 26, 23, 0.04);
+}
+
+/* Solid accent text instead of a gradient (single accent, used sparingly) */
+.text-gradient {
+  color: #b5481f;
+}
+
+/* Section eyebrow label */
+.eyebrow {
+  @apply text-xs uppercase tracking-[0.2em] font-mono font-medium;
+  color: #b5481f;
+}
+
+/* Reusable section heading */
+.section-heading {
+  @apply font-display text-3xl sm:text-4xl font-semibold mt-3 mb-4;
+  color: #1c1a17;
+}
+
+.section-sub {
+  @apply max-w-2xl leading-relaxed;
+  color: #6b6555;
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #b5481f;
+  outline-offset: 2px;
+}
