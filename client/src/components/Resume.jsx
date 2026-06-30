@@ -50,31 +50,33 @@ export default function Resume() {
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4 text-left mb-10">
-            {resumeHighlights.map((item) => (
-              <div
-                key={item.label}
-                className="flex items-start gap-3 bg-white border border-[#ddd6c8] rounded-xl p-4"
-              >
-                <item.icon className="text-xl text-cyan-400 mt-0.5 shrink-0" />
+            {resumeHighlights.map((item) => {
+              const Icon = item.icon;
 
-                <div>
-                  <p className="text-xs font-mono uppercase tracking-wide text-[#8a8270]">
-                    {item.label}
-                  </p>
+              return (
+                <div
+                  key={item.label}
+                  className="flex items-start gap-3 bg-white border border-[#ddd6c8] rounded-xl p-4"
+                >
+                  <Icon className="text-xl text-cyan-400 mt-0.5 shrink-0" />
 
-                  <p className="text-sm text-[#3a352e] font-medium mt-0.5">
-                    {item.value}
-                  </p>
+                  <div>
+                    <p className="text-xs font-mono uppercase tracking-wide text-[#8a8270]">
+                      {item.label}
+                    </p>
+
+                    <p className="text-sm text-[#3a352e] font-medium mt-0.5">
+                      {item.value}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <a
-            href="/Lavanya_GLAU_BTECH.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            download
+            href="/Lavanya_Banga_Resume.pdf"
+            download="Lavanya_Banga_Resume.pdf"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-accent px-8 py-3.5 font-semibold text-navy-950 transition-transform duration-200 hover:scale-105 shadow-glow"
           >
             Download Full Resume
