@@ -20,13 +20,12 @@ export const projects = [
     accent: "violet",
   },
  
-  {
-    title: "LifeOS",
-    description:
-      "An AI productivity and placement preparation dashboard combining task tracking, DSA progress monitoring, and mock interview scheduling in one workspace.",
-    tech: ["React", "Tailwind CSS","UI Shadcn","Figma"],
-    github: "https://github.com/LavanyaBanga/LifeOS",
-  
-    accent: "violet",
-  },
+ {
+  title: "Sukoon",
+  description:
+    "A full-stack mindfulness and wellness platform featuring mood tracking, personalized self-care experiences, and an interactive AI-powered chatbot to support everyday mental well-being.",
+  tech: ["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "AI"],
+  github: "https://github.com/LavanyaBanga/Sukoon",
+  accent: "violet",
+},
 ];

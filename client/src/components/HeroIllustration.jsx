@@ -25,6 +25,22 @@ export default function HeroIllustration() {
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
+      {/* Rotating orbit rings */}
+      <motion.div
+        className="absolute w-[26rem] h-[26rem] sm:w-[30rem] sm:h-[30rem] rounded-full border border-dashed border-[#c9c0ac]/60"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      >
+        <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-cyan-400 shadow-glow" />
+      </motion.div>
+      <motion.div
+        className="absolute w-72 h-72 sm:w-80 sm:h-80 rounded-full border border-dashed border-violet-400/40"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+      >
+        <span className="absolute top-1/2 -right-1.5 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-violet-400" />
+      </motion.div>
+
       {/* Floating tech labels orbiting the illustration */}
       {floatingTech.map((item) => (
         <motion.div
