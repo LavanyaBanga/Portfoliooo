@@ -1,5 +1,8 @@
 // Project data consumed by the Projects section.
 // Replace the github/live links with real URLs when ready to deploy.
+// `image` is the hover-preview screenshot/gif shown on the card — swap the
+// placeholder SVGs in /public/projects/ for real screenshots or a short gif
+// whenever you have them (any image path works, .gif included).
 export const projects = [
   {
     title: "InternEase",
@@ -7,7 +10,7 @@ export const projects = [
       "An AI-powered internship and career platform that matches students with relevant internships, tracks applications, and offers resume insights tailored to each role.",
     tech: ["React", "Node.js", "MongoDB", "Express", "OpenAI API","Tailwind CSS","Shadcn UI"],
     github: "https://github.com/LavanyaBanga/InternEase",
-   
+    image: "/projects/internease.svg",
     accent: "cyan",
   },
   {
@@ -16,16 +19,16 @@ export const projects = [
       "A doctor-patient appointment booking system with real-time slot availability, patient history management, and role-based dashboards for doctors and patients.",
     tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
     github: "https://github.com/LavanyaBanga/Saarthi",
- 
+    image: "/projects/saarthi.svg",
     accent: "violet",
   },
- 
- {
-  title: "Sukoon",
-  description:
-    "A full-stack mindfulness and wellness platform featuring mood tracking, personalized self-care experiences, and an interactive AI-powered chatbot to support everyday mental well-being.",
-  tech: ["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "AI"],
-  github: "https://github.com/LavanyaBanga/Sukoon",
-  accent: "violet",
-},
+  {
+    title: "Sukoon",
+    description:
+      "A full-stack mindfulness and wellness platform featuring mood tracking, personalized self-care experiences, and an interactive AI-powered chatbot to support everyday mental well-being.",
+    tech: ["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "AI"],
+    github: "https://github.com/LavanyaBanga/Sukoon",
+    image: "/projects/sukoon.svg",
+    accent: "violet",
+  },
 ];

@@ -1,7 +1,16 @@
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
+import { useRef } from "react";
 import { achievements } from "../data/achievements";
 
 export default function Achievements() {
+  const trackRef = useRef(null);
+  // Progress of the timeline track itself scrolling through the viewport —
+  // drives the line filling in as the user scrolls down this section.
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ["start 0.85", "end 0.4"],
+  });
+
   return (
     <section id="achievements" className="relative py-24 sm:py-32">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
@@ -20,9 +29,14 @@ export default function Achievements() {
           </p>
         </motion.div>
 
-        <div className="relative max-w-3xl mx-auto">
-          {/* vertical timeline line */}
-          <div className="absolute left-5 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-400/40 via-violet-400/30 to-transparent sm:-translate-x-1/2" />
+        <div ref={trackRef} className="relative max-w-3xl mx-auto">
+          {/* static vertical track */}
+          <div className="absolute left-5 sm:left-1/2 top-0 bottom-0 w-px bg-[#ddd6c8] sm:-translate-x-1/2" />
+          {/* animated fill that grows as the section scrolls through view */}
+          <motion.div
+            className="absolute left-5 sm:left-1/2 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-cyan-400 via-violet-400 to-cyan-400/60 sm:-translate-x-1/2"
+            style={{ scaleY: scrollYProgress }}
+          />
 
           <div className="space-y-8">
             {achievements.map((item, i) => (

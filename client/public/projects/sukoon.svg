@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+  <defs>
+    <filter id="soft3" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fdfbf6"/>
+      <stop offset="1" stop-color="#f6f0e2"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="400" fill="url(#bg3)"/>
+  <circle cx="320" cy="160" r="150" fill="#b5481f" opacity="0.10" filter="url(#soft3)"/>
+  <circle cx="540" cy="330" r="90" fill="#9c3c18" opacity="0.10" filter="url(#soft3)"/>
+
+  <!-- browser chrome -->
+  <rect width="640" height="38" fill="#efe9db"/>
+  <circle cx="20" cy="19" r="6" fill="#e0765a"/>
+  <circle cx="42" cy="19" r="6" fill="#e6b95c"/>
+  <circle cx="64" cy="19" r="6" fill="#7fbf8f"/>
+  <rect x="90" y="11" width="300" height="16" rx="8" fill="#ffffff" stroke="#ddd6c8"/>
+
+  <!-- breathing rings -->
+  <circle cx="320" cy="165" r="88" fill="none" stroke="#b5481f" stroke-width="1.5" opacity="0.25"/>
+  <circle cx="320" cy="165" r="64" fill="none" stroke="#b5481f" stroke-width="1.5" opacity="0.35"/>
+  <circle cx="320" cy="165" r="42" fill="#b5481f" opacity="0.18"/>
+  <circle cx="320" cy="165" r="24" fill="#b5481f" opacity="0.55"/>
+  <rect x="270" y="266" width="100" height="12" rx="4" fill="#3a352e" opacity="0.75"/>
+
+  <!-- quick action cards -->
+  <g>
+    <rect x="80" y="300" width="140" height="70" rx="14" fill="#ffffff" stroke="#e6dfcf" stroke-width="2"/>
+    <circle cx="110" cy="326" r="12" fill="#b5481f" opacity="0.55"/>
+    <rect x="96" y="344" width="90" height="8" rx="3" fill="#ddd6c8"/>
+    <rect x="96" y="356" width="60" height="7" rx="3" fill="#ddd6c8"/>
+  </g>
+  <g>
+    <rect x="250" y="300" width="140" height="70" rx="14" fill="#ffffff" stroke="#e6dfcf" stroke-width="2"/>
+    <circle cx="280" cy="326" r="12" fill="#9c3c18" opacity="0.55"/>
+    <rect x="266" y="344" width="90" height="8" rx="3" fill="#ddd6c8"/>
+    <rect x="266" y="356" width="60" height="7" rx="3" fill="#ddd6c8"/>
+  </g>
+  <g>
+    <rect x="420" y="300" width="140" height="70" rx="14" fill="#ffffff" stroke="#e6dfcf" stroke-width="2"/>
+    <circle cx="450" cy="326" r="12" fill="#b5481f" opacity="0.55"/>
+    <rect x="436" y="344" width="90" height="8" rx="3" fill="#ddd6c8"/>
+    <rect x="436" y="356" width="60" height="7" rx="3" fill="#ddd6c8"/>
+  </g>
+
+  <!-- floating chatbot bubble -->
+  <circle cx="580" cy="90" r="26" fill="#b5481f"/>
+  <circle cx="571" cy="86" r="4" fill="#fdfbf6"/>
+  <circle cx="585" cy="86" r="4" fill="#fdfbf6"/>
+  <path d="M568 96 q12 10 24 0" stroke="#fdfbf6" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>
