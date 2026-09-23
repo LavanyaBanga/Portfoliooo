@@ -2,44 +2,96 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineMail } from "react-icons/hi";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+
+    setError("");
+    setSubmitted(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setLoading(true);
+    setSubmitted(false);
+    setError("");
+
+    // Get EmailJS environment variables
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Check if EmailJS variables exist
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS environment variables are missing.");
+
+      setError(
+        "Email service is not configured properly. Please try again later."
+      );
+
+      setLoading(false);
+      return;
+    }
+
+    // Debug information
+    console.log("EmailJS Service ID:", serviceId);
+    console.log("EmailJS Template ID:", templateId);
+    console.log("EmailJS Public Key:", publicKey);
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
         },
-        body: JSON.stringify(form),
+        publicKey
+      );
+
+      console.log("EmailJS Success:", response);
+
+      // Show success message
+      setSubmitted(true);
+
+      // Clear form
+      setForm({
+        name: "",
+        email: "",
+        message: "",
       });
 
-      const data = await res.json();
-
-      if (data.success) {
-        setSubmitted(true);
-        setForm({ name: "", email: "", message: "" });
-
-        setTimeout(() => {
-          setSubmitted(false);
-        }, 4000);
-      } else {
-        alert(data.message || "Message send nahi hua.");
-      }
+      // Hide success message after 4 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 4000);
     } catch (error) {
-      console.error(error);
-      alert("Backend not running.");
+      console.error("EmailJS FULL ERROR:", error);
+      console.error("EmailJS Status:", error?.status);
+      console.error("EmailJS Text:", error?.text);
+
+      setError(
+        `Message send nahi hua. ${
+          error?.text || "Please try again later."
+        }`
+      );
     } finally {
       setLoading(false);
     }
@@ -48,6 +100,8 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-24 sm:py-32">
       <div className="max-w-5xl mx-auto px-6 sm:px-8">
+
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,14 +110,21 @@ export default function Contact() {
           className="text-center max-w-xl mx-auto mb-14"
         >
           <span className="eyebrow">Contact</span>
-          <h2 className="section-heading">Let's build something together</h2>
+
+          <h2 className="section-heading">
+            Let's build something together
+          </h2>
+
           <p className="section-sub mx-auto">
             Open to internships, full-time roles, and collaborative projects.
             Reach out and I'll get back to you soon.
           </p>
         </motion.div>
 
+        {/* Main Content */}
         <div className="grid lg:grid-cols-5 gap-8">
+
+          {/* Contact Links */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -71,6 +132,8 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-2 glass-card p-7 space-y-5"
           >
+
+            {/* Email */}
             <a
               href="mailto:lavanyabanga14@gmail.com"
               className="flex items-center gap-3 text-[#4a4439] hover:text-[#b5481f] transition-colors duration-200"
@@ -78,9 +141,13 @@ export default function Contact() {
               <span className="w-10 h-10 rounded-lg bg-cyan-400/10 flex items-center justify-center text-[#b5481f]">
                 <HiOutlineMail className="text-lg" />
               </span>
-              lavanyabanga14@gmail.com
+
+              <span className="break-all">
+                lavanyabanga14@gmail.com
+              </span>
             </a>
 
+            {/* GitHub */}
             <a
               href="https://github.com/LavanyaBanga"
               target="_blank"
@@ -90,9 +157,13 @@ export default function Contact() {
               <span className="w-10 h-10 rounded-lg bg-violet-400/10 flex items-center justify-center text-[#b5481f]">
                 <FiGithub className="text-lg" />
               </span>
-              github.com/LavanyaBanga
+
+              <span className="break-all">
+                github.com/LavanyaBanga
+              </span>
             </a>
 
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/lavanya-banga-0a00692b1/"
               target="_blank"
@@ -102,10 +173,15 @@ export default function Contact() {
               <span className="w-10 h-10 rounded-lg bg-cyan-400/10 flex items-center justify-center text-[#b5481f]">
                 <FiLinkedin className="text-lg" />
               </span>
-              linkedin.com/in/lavanya-banga-0a00692b1
+
+              <span className="break-all">
+                linkedin.com/in/lavanya-banga-0a00692b1
+              </span>
             </a>
+
           </motion.div>
 
+          {/* Contact Form */}
           <motion.form
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -114,6 +190,8 @@ export default function Contact() {
             onSubmit={handleSubmit}
             className="lg:col-span-3 glass-card p-7 space-y-4"
           >
+
+            {/* Name */}
             <div>
               <label
                 htmlFor="name"
@@ -121,6 +199,7 @@ export default function Contact() {
               >
                 Name
               </label>
+
               <input
                 id="name"
                 name="name"
@@ -133,6 +212,7 @@ export default function Contact() {
               />
             </div>
 
+            {/* Email */}
             <div>
               <label
                 htmlFor="email"
@@ -140,6 +220,7 @@ export default function Contact() {
               >
                 Email
               </label>
+
               <input
                 id="email"
                 name="email"
@@ -152,6 +233,7 @@ export default function Contact() {
               />
             </div>
 
+            {/* Message */}
             <div>
               <label
                 htmlFor="message"
@@ -159,6 +241,7 @@ export default function Contact() {
               >
                 Message
               </label>
+
               <textarea
                 id="message"
                 name="message"
@@ -171,6 +254,21 @@ export default function Contact() {
               />
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <p className="text-sm text-red-500">
+                {error}
+              </p>
+            )}
+
+            {/* Success Message */}
+            {submitted && (
+              <p className="text-sm text-green-600">
+                Message sent successfully! ✓
+              </p>
+            )}
+
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading}
@@ -179,9 +277,10 @@ export default function Contact() {
               {loading
                 ? "Sending..."
                 : submitted
-                ? "Message Sent"
+                ? "Message Sent ✓"
                 : "Send Message"}
             </button>
+
           </motion.form>
         </div>
       </div>
